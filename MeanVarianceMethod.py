@@ -1,3 +1,8 @@
+from nltk.tokenize import word_tokenize
+import json
+import os
+from nltk import FreqDist
+from nltk.util import ngrams
 import math
 from zemberek import TurkishMorphology
 import string
@@ -25,10 +30,10 @@ def read():
     return all_json
 
 def extract_bigrams(bigrams):
-    textfile = open('corpus.txt', 'r', encoding="utf-8")
-    morphology = TurkishMorphology.create_with_defaults()
 
-    for line in textfile:
+    all_json = read()
+    morphology = TurkishMorphology.create_with_defaults()
+    for line in all_json:
         if len(line) > 1:
             tokens = line.strip().split(' ')
             for i, token in enumerate(tokens):
@@ -68,15 +73,17 @@ def extract_bigrams(bigrams):
 def compute_mean_and_variance(bigrams):
     for bigram in bigrams:
         # Get offset list and count
-        count = bigram[0]
-        offsets = bigram[1]
-        print(bigram)
+        count = bigrams[bigram][0]
+        offsets = bigrams[bigram][1]
 
         # Calculate mean and variance
         mean = (1 / count) * (sum(offsets))
-        variance = math.sqrt((1 / (count - 1)) * sum([(mean - offset)**2 for offset in offsets]))
 
-        bigram[2] = variance
+        if count > 1:
+            variance = math.sqrt((1 / (count - 1)) * sum([(mean - offset)**2 for offset in offsets]))
+            bigrams[bigram][2] = variance
+        else:
+            bigrams[bigram][2] = 99
 
 
 def result(bigrams):
@@ -84,9 +91,9 @@ def result(bigrams):
     for key in bigrams.keys():
         variances[key] = bigrams[key][2]
 
-    variances = sorted(variances)
+    v = dict(sorted(variances.items(), key=lambda item: item[1]))
 
-    print(variances)
+    print(v)
 
 if __name__ == "__main__":
     bigrams = dict()
