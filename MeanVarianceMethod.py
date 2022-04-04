@@ -2,7 +2,27 @@ import math
 from zemberek import TurkishMorphology
 import string
 
+def read():
+    json_folder_path = os.path.join("2021-01")
+    json_files = [x for x in os.listdir(json_folder_path) if
+                  x.endswith("json") and not (x.__contains__("("))]  # tekrarlayan dosya kontrolu
+    json_data = list()
+    for json_file in json_files[:10]:
+        json_file_path = os.path.join(json_folder_path, json_file)
+        with open(json_file_path, "r", encoding="utf-8") as f:
+            json_data.append(json.load(f))
 
+    all_json = []
+
+    for js in json_data:
+        all_json.append(js["ictihat"])
+
+    # with open("corpus.txt", "w", encoding="utf-8") as outfile:
+    #     for tt in all_json:
+    #         outfile.write(str(str.lower(tt)))
+    # outfile.close()
+
+    return all_json
 
 def extract_bigrams(bigrams):
     textfile = open('corpus.txt', 'r', encoding="utf-8")
