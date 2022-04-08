@@ -93,3 +93,9 @@ class MeanAndVarianceMethod:
         self.morphology_mode = morphology_mode
 
         self.logger.info(f'morphology_mode is set to {self.morphology_mode}')
+
+    def __convert_to_list(self):
+        for i, bigram in enumerate(self.mean_and_variance_bigrams):
+            if i == 20:
+                break
+            self.most_commons.append((bigram[0], bigram[1][0], bigram[1][2]))
