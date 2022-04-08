@@ -72,5 +72,9 @@ class FrequencyMethod:
             return r_tags[0]
         return ''
 
+    def __convert_to_list(self):
+        for ngram in self.frequency_ngram_dist.most_common(20):
+            self.most_commons.append((f'{ngram[0][0]} {ngram[0][1]}', ngram[1]))
+
 
 
