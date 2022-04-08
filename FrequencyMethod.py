@@ -6,6 +6,7 @@ from nltk.util import ngrams
 from DatasetHandler import DatasetHandler
 from zemberek import TurkishMorphology
 
+
 class FrequencyMethod:
     def __init__(self, dataset_handler: DatasetHandler, n, morphology_mode):
         self.dataset_handler = dataset_handler
@@ -39,12 +40,11 @@ class FrequencyMethod:
 
         self.frequency_ngram_dist.update(n_grams)
 
-        #self.__convert_to_list()
+        self.__convert_to_list()
 
         self.logger.info('Frequency method has done.')
 
         return self.most_commons
-
 
     def set_morphology_mode(self, morphology_mode):
         if morphology_mode:
@@ -56,8 +56,7 @@ class FrequencyMethod:
 
         self.logger.info(f'morphology_mode is set to {self.morphology_mode}')
 
-
-    def get_pos_tags(self,word):
+    def __get_pos_tags(self, word):
         r_tags = []
         tags = self.pos_tagger.analyze(word.strip())
         tags_str = str(tags)
@@ -73,8 +72,16 @@ class FrequencyMethod:
         return ''
 
     def __convert_to_list(self):
-        for ngram in self.frequency_ngram_dist.most_common(20):
-            self.most_commons.append((f'{ngram[0][0]} {ngram[0][1]}', ngram[1]))
+        i = 0
+        for ngram in self.frequency_ngram_dist.most_common(100):
+            # Check with pos tagger
+            w1_tag = self.__get_pos_tags(ngram[0][0])
+            w2_tag = self.__get_pos_tags(ngram[0][1])
+            tag = w1_tag + w2_tag
 
+            if tag == 'AN' or tag == 'NN':
+                i += 1
+                self.most_commons.append((f'{ngram[0][0]} {ngram[0][1]}', ngram[1]))
 
-
+            if i == 20:
+                break
