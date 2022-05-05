@@ -1,0 +1,22 @@
+                                                          precision    recall  f1-score   support
+
+                                   adliyeye karşı suçlar       0.87      0.89      0.88       437
+   anayasal düzene ve bu düzenin işleyişine karşı suçlar       0.98      0.95      0.97        64
+                      cinsel dokunulmazlığa karşı suçlar       0.96      0.96      0.96       162
+             ekonomik, sanayi ve ticarete ilişkin suçlar       0.89      0.86      0.87        28
+                            genel tehlike yaratan suçlar       0.88      0.81      0.84        52
+                             hayata karşı işlenen suçlar       0.99      0.93      0.96        72
+                             hürriyete karşı olan suçlar       0.79      0.86      0.82       423
+                                  hürriyete karşı suçlar       0.67      0.24      0.35        17
+                              kamu güvenine karşı suçlar       0.79      0.81      0.80       139
+kamu idaresinin güvenirliğine ve işleyişine karşı suçlar       0.86      0.74      0.80       139
+                          kamunun sağlığına karşı suçlar       0.98      1.00      0.99       235
+                               malvarlığına karşı suçlar       0.86      0.95      0.91       566
+                                                   other       0.74      0.54      0.62        52
+                                               undefined       0.99      0.98      0.99      2607
+                     vücut dokunulmazlığına karşı suçlar       0.98      0.95      0.96       452
+                                     şerefe karşı suçlar       0.74      0.61      0.67       124
+
+                                                accuracy                           0.93      5569
+                                               macro avg       0.87      0.82      0.84      5569
+                                            weighted avg       0.93      0.93      0.93      5569
