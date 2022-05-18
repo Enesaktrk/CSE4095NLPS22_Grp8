@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 import fasttext.util
 import matplotlib.pyplot as plt
@@ -26,6 +28,7 @@ WEIGHT_DECAY = 1e-4
 class Model:
     def __init__(self, dataset_handler: DatasetHandler):
         self.data = dataset_handler
+        self.tokenizer = Tokenizer(num_words=MAX_NB_WORDS, lower=True, char_level=False)
         self.data_preparation()
         # fasttext.util.download_model('tr', if_exists='ignore')
         self.tokenizer = Tokenizer(num_words=MAX_NB_WORDS, lower=True, char_level=False)
@@ -88,6 +91,7 @@ class Model:
         self.outputs = layers.Dense(self.num_classes, activation="sigmoid")(self.model)
         self.model = keras.Model(self.inputs, self.outputs)
         self.model.summary()
+        exit()
 
     def train(self):
         self.model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
