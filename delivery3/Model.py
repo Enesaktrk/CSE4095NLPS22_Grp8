@@ -91,7 +91,6 @@ class Model:
         self.outputs = layers.Dense(self.num_classes, activation="sigmoid")(self.model)
         self.model = keras.Model(self.inputs, self.outputs)
         self.model.summary()
-        exit()
 
     def train(self):
         self.model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
