@@ -1,0 +1,16 @@
+                        precision    recall  f1-score   support
+
+ asliye ceza mahkemesi       0.90      0.96      0.93      1986
+asliye hukuk mahkemesi       0.79      0.82      0.80       390
+   ağır ceza mahkemesi       0.84      0.69      0.76       380
+bölge adliye mahkemesi       0.93      0.92      0.93       494
+          ceza dairesi       0.96      0.95      0.96       220
+                 empty       0.92      0.94      0.93      1342
+         i̇ş mahkemesi       0.95      0.95      0.95       283
+                 other       0.82      0.60      0.69       251
+     ticaret mahkemesi       0.72      0.63      0.67        87
+       çocuk mahkemesi       0.58      0.46      0.51       136
+
+              accuracy                           0.89      5569
+             macro avg       0.84      0.79      0.81      5569
+          weighted avg       0.89      0.89      0.89      5569
